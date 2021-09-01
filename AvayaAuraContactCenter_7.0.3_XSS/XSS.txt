@@ -1,0 +1,22 @@
+Avaya Aura Contact Center 7.0.3 - Reflected XSS (Cross-Site Scripting)
+------------------------------------------------------------------------
+
+
+Type: Unauthenticated Remote attack
+
+We have identified that Avaya Aura Contact Center Multimedia is vulnerable to XSS attacks on the "/code/webchatLogin.php" endpoint. This is due to that the Web App fails to adequately sanitize request strings of malicious JavaScript. By leveraging this issue, an attacker is able to cause arbitrary HTML and Script code to be executed in a user's browser within the security context of the affected site. This attack can be used in conjunction with a social engineering techniques.
+
+Also, successful injection was performed through "lang" web parameter using the HTTP Parameter Pollution technique.
+
+
+
+Evidence is provided:
+
+
+target-domain.com/code/webchatLogin.php/"};</script><script>alert("XSSByIthacaLabs");<script></script>{"
+
+
+
+The 'lang' parameter of the /code/webchatLogin.php:
+
+target-domain.com/code/webchatLogin.php?lang="};</script><script>alert("XSSByIthacaLabs");<script></script>{"&lang=en
