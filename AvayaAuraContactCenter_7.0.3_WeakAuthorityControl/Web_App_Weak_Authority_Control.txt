@@ -3,7 +3,7 @@ Avaya Aura Contact Center 7.0.3 - Weak Authority Control
 
 Type: Remote Attack
 
-We have managed to intercept the LogOff POST HTTP request, and then replace the name value in the "sessionKey" parameter and the email value in the "username" parameter of the current user with the corresponding values of other active user (targeted user). We have observed that this action forced the server to log off the targeted user, even though the session cookie of the current user was different from the one owned by the other user (targeted user). By exploiting this issue a remote attacker could perform a massive disconnection of the Web Application's users.
+We have managed to intercept the LogOff POST HTTP request, and then replace the name value in the "sessionKey" parameter and the email value in the "username" parameter of the current user with the corresponding values of other active user (targeted user). We have observed that this action forced the server to log off the targeted user, even though the session cookie of the current user was different from the one owned by the other user (targeted user). By exploiting this issue a remote attacker could perform a massive disconnection of the Web Application's users. A registered user account and a list of known targeted usernames/emails are required for a successful attack. 
 
 
 Evidence is provided:
