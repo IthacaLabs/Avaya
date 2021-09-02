@@ -23,7 +23,7 @@ Origin: http://192.168.0.160:8080
 DNT: 1
 Connection: close
 Referer: http://192.168.0.160:8080/CI_Sample_Website/logoffCustomer.jsp
-Cookie: JSESSIONID=387B64CF997EE4A4C7E1589A00D5203E
+Cookie: JSESSIONID=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Upgrade-Insecure-Requests: 1
 
 sessionKey=d9IApkAqvI__test&username=test%40hotmail.com
@@ -43,7 +43,7 @@ Origin: http://192.168.0.160:8080
 DNT: 1
 Connection: close
 Referer: http://192.168.0.160:8080/CI_Sample_Website/logoffCustomer.jsp
-Cookie: JSESSIONID=387B64CF997EE4A4C7E1589A00D5203E
+Cookie: JSESSIONID=AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Upgrade-Insecure-Requests: 1
 
 sessionKey=d9IApkAqvI__a************&username=a************%40hotmail.com
