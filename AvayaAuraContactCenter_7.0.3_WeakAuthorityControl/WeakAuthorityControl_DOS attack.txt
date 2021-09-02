@@ -1,5 +1,5 @@
-Avaya Aura Contact Center 7.0.3 - Weak Authority Control
---------------------------------------------------------
+Avaya Aura Contact Center 7.0.3 - Weak Authority Control - DOS attack
+----------------------------------------------------------------------
 
 Type: Remote Attack
 
